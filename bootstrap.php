@@ -18,6 +18,8 @@
 $vendorDirPath = realpath(__DIR__ . '/vendor');
 if (file_exists($vendorDirPath . '/autoload.php')) {
     require $vendorDirPath . '/autoload.php';
+} elseif (file_exists(__DIR__ . "/../.." . '/autoload.php')){
+    require __DIR__ . "/../.." . '/autoload.php';
 } else {
     throw new Exception(
         sprintf(
