@@ -328,9 +328,11 @@ class Html
             foreach ($cNodes as $cNode) {
                 if ($cNode->nodeName == '#text') {
                     $text = $cNode->nodeValue;
+                    $element->addListItem($text, $data['listdepth'], $styles['font'], $styles['list'], $styles['paragraph']);
+                }else{
+                    self::parseNode($cNode, $element, $styles, $data);
                 }
             }
-            $element->addListItem($text, $data['listdepth'], $styles['font'], $styles['list'], $styles['paragraph']);
         }
 
         return null;
@@ -361,7 +363,7 @@ class Html
                     }
                     break;
                 case 'text-align':
-                    $styles['alignment'] = $cValue; // todo: any mapping?
+                    $styles['alignment'] = "both"; // todo: any mapping?
                     break;
                 case 'color':
                     $styles['color'] = trim($cValue, "#");
